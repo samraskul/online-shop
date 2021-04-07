@@ -12,8 +12,8 @@
 
     
     {
-        "name": "name",
-        "dbType": "string,191:nullable",
+        "name": "username",
+        "dbType": "string,191:unique",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
