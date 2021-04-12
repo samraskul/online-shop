@@ -4,8 +4,9 @@
             <tr>
                 <th>Id</th>
         <th>Title</th>
+        <th>Description</th>
         <th>Content</th>
-        <th>User Id</th>
+        <th>Admin Id</th>
         <th>Category Id</th>
         <th>Is Active</th>
                 <th colspan="3">Action</th>
@@ -16,8 +17,9 @@
             <tr>
                 <td>{{ $post->id }}</td>
             <td>{{ $post->title }}</td>
+            <td>{{ $post->description }}</td>
             <td>{{ $post->content }}</td>
-            <td>{{ $post->user_id }}</td>
+            <td>{{ $post->admin_id }}</td>
             <td>{{ $post->category_id }}</td>
             <td>{{ $post->is_active }}</td>
                 <td width="120">

@@ -508,8 +508,8 @@ li {
 }
 
 .card-item-image>img {
-    width        : 100%;
-    max-height   : 100%;
+    /* width        : 100%; */
+    max-height   : 187px;
     /* object-fit: cover; */
 }
 
@@ -548,6 +548,10 @@ li {
     justify-content : center;
     align-items     : center;
 
+}
+
+.card-btn-show-product>a:link, .card-btn-show-product>a:visited{
+    color: white;
 }
 
 /* card items end ========================================================*/

@@ -290,13 +290,15 @@
 
             <!-- breadcrumb start -->
             <div class="breadcrumb">
-                <a href="">Home</a>
+                <a href="{{ route('index.homePage') }}">Home</a>
                 <i class="fa fa-greater-than"></i>
+                {{-- <!-- TODO:add the link or decide for the text and url --> --}}
                 <a href="">Shop</a>
                 <i class="fa fa-greater-than"></i>
+                {{-- <!-- TODO:add the link to route for category --> --}}
                 <a href="">Electronics</a>
                 <i class="fa fa-greater-than"></i>
-                Citen mita pika
+                {{ $product->name }}
             </div>
             <!-- breadcrumb end -->
 
@@ -309,23 +311,25 @@
                             <img src="" id="single-product-main-slider-image" alt="">
                         </div>
                         <div class="single-product-content-first-slider-slider">
-                            <img src="/images/41920b7fcd9c763952b3425f925f85ea.jpeg" alt="">
-                            <img src="/images/95123b84eff953ae8b847ee05aa42577.jpg" alt="">
-                            <img src="/images/a0f6c72892186fd1c0b8955fddee7bad.jpg" alt="">
-                            <img src="/images/c165aaa71a8963efef01d2a226d0688a.jpg" alt="">
-                            <img src="/images/0a0a1826f33eb6482ab0d604faf11e07.jpg" alt="">
-                            <img src="/images/c165aaa71a8963efef01d2a226d0688a.jpg" alt="">
-                            <img src="/images/0a0a1826f33eb6482ab0d604faf11e07.jpg" alt="">
+                            @php
+                            @endphp
+                            <img src="{{ $product->images->filter(function($item){return stristr($item, 'main-image-');})->first()->url }}" alt="{{ $product->name }}">
+                            @foreach ($product->images as $image)
+                                @if(stristr($image->type, 'other-images-') ?true: false)
+                                    <img src="{{ $image->url }}" alt="">
+                                @endif
+                            @endforeach
                         </div>
 
                     </div>
 
                     <div class="single-product-content-first-content">
 
-                        <h1>Citen mita pika</h1>
+                        <h1>{{ $product->name }}</h1>
 
                         <div class="single-product-content-first-content-rating">
                             <div id="full-stars-example-two">
+                                {{-- <!--TODO:priority low-> fix the stars some how --> --}}
                                 <div class="rating-group">
                                     <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
                                     <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
@@ -342,41 +346,48 @@
                             </div>
 
                             <div>
-                                5 Reviews | Submit Review
+                                5 Reviews |<a href=""> Submit Review</a>
                             </div>
                         </div>
 
                         <div class="single-product-content-first-content-availability">
+                            @if($product->stock > 0)
                             <i class="fas fa-check-circle"></i>
-                            <!-- or <i class="fa fa-times-circle"></i> -->
+                            @else
+                            <i class="fa fa-times-circle"></i>
+                            @endif
                             Product Available in stock
                         </div>
                         <div class="single-product-content-first-content-small-description">
                             chukan ante eu egestas. Morbi vulputate diam at nibh imperdiet pretium. Nulla euismod, nibh nec tincidunt maximus, elit sem ornare nunc, et dictum elit dui sed justo. Donec scelerisque, erat vel pharetra luctus, nibh tortor efficitur nibh, non euismod leo diam ut risus.
                         </div>
                         <div class="single-product-content-first-content-prices">
+                            @if($product->discount>0)
                             <div class="single-product-content-first-content-price">
-                                18.00
+                                new price: {{ $product->price - $product->discount }}
                             </div>
                             <div class="single-product-content-first-content-price-old">
-                                27.00
+                                old price: {{ $product->price }}
                             </div>
+                            @else
+                            <div class="single-product-content-first-content-price">
+                                price: {{ $product->price }}
+                            </div>
+                            @endif
                         </div>
 
                         <div class="single-product-content-first-content-prices">
                             <form action="">
                                 Quantity:
-                                <input type="number" value="1" step="1" min="1" max="9" />
+                                <input type="number" value="1" step="1" min="1" max="{{ $product->stock }}" />
                                 <button type="submit">ADD TO CART</button>
                             </form>
                         </div>
-                        <div class="single-product-content-first-content-prices">
-                            Manufacturer: BMW
-                        </div>
-
-
-
-
+                        @if(! empty($product->brand))
+                            <div class="single-product-content-first-content-prices">
+                                Manufacturer: {{ $product->brand }}
+                            </div>
+                        @endif
                     </div>
 
 
@@ -396,14 +407,13 @@
 
                             <div class="tab__content">
                                 <h3>Description</h3>
-                                <p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet
-                                    eget, lobortis pellentesque, rutrum eu, nisl. Nullam accumsan lorem in dui. Donec pede
-                                    justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                                <div>{!! $product->long_description !!}</div>
                             </div>
 
                             <div class="tab__content">
                                 <h3>Specification</h3>
-                                <table>
+                                <div>{!! $product->specification !!}</div>
+                                {{-- <table>
                                     <tbody>
                                         <tr>
                                             <td>NETWORK Technology</td>
@@ -503,9 +513,9 @@
                                         </tr>
 
                                     </tbody>
-                                </table>
+                                </table> --}}
                             </div>
-
+                            <!--TODO:add reviews and review form-->
                             <div class="tab__content">
                                 <h3>Reviews</h3>
                                 <p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet

@@ -1,7 +1,10 @@
 php artisan infyom:scaffold ModelName --prefix=admin --fieldsFile=infyom\FileName.json
-php artisan infyom:scaffold Message --prefix=admin --fieldsFile=infyom\Message.json --datatables=true
+php artisan infyom:scaffold Message --prefix=admin --fieldsFile=infyom/Message.json --datatables=true
 
-php artisan infyom:scaffold Setting --prefix=admin --fieldsFile=infyom\Setting.json
-php artisan infyom:scaffold Category --prefix=admin --fieldsFile=infyom\Category.json
-php artisan infyom:scaffold Product --prefix=admin --fieldsFile=infyom\Product.json
-php artisan infyom:scaffold Post --prefix=admin --fieldsFile=infyom\Post.json
+
+php artisan infyom:scaffold Setting --prefix=admin --fieldsFile=infyom/Setting.json
+php artisan infyom:scaffold Category --prefix=admin --fieldsFile=infyom/Category.json
+php artisan infyom:scaffold CategoryGroup --prefix=admin --fieldsFile=infyom/CategoryGroup.json
+php artisan infyom:scaffold Product --prefix=admin --fieldsFile=infyom/Product.json
+php artisan infyom:scaffold Post --prefix=admin --fieldsFile=infyom/Post.json
+php artisan infyom:scaffold Image --prefix=admin --fieldsFile=infyom/Image.json

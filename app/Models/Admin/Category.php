@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Category
  * @package App\Models\Admin
- * @version March 21, 2021, 8:22 am UTC
+ * @version April 10, 2021, 10:06 pm UTC
  *
  * @property string $name
  * @property string $type
@@ -37,7 +37,6 @@ class Category extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'name' => 'string',
         'type' => 'string',
         'parent_id' => 'integer'

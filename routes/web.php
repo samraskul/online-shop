@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Index\ProductController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Index\HomeController;
 use App\Http\Controllers\SettingController;
+use App\Models\Admin\CategoryGroup;
+use App\Models\Admin\Product;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,15 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index.home');
-});
+Route::get('/', HomeController::class)->name('index.homePage'); //completed
+
+Route::get('/product/{productUrl}', ProductController::class)->name('index.productSinglePage');
+
 Route::get('/temp', function () {
-    // $role = Role::create(['name' => 'writer']);
-    // $permission = Permission::create(['name' => 'edit articles']);
-    //admin, editor, writer, customer
     return "ok";
-})->middleware('role:admin');
+});
+
 
 Auth::routes();
 
@@ -35,6 +38,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::view('/login', 'admin.admin-login');
     Route::post('/login', AdminLoginController::class);
 });
+
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('settings', App\Http\Controllers\Admin\SettingController::class, ["as" => 'admin']);
 });
@@ -52,4 +56,14 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('posts', App\Http\Controllers\Admin\PostController::class, ["as" => 'admin']);
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('images', App\Http\Controllers\Admin\Admin\ImageController::class, ["as" => 'admin']);
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('categoryGroups', App\Http\Controllers\Admin\Admin\CategoryGroupController::class, ["as" => 'admin']);
 });

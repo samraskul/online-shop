@@ -16,10 +16,16 @@
     <p>{{ $product->category_id }}</p>
 </div>
 
-<!-- User Id Field -->
+<!-- Is Active Field -->
 <div class="col-sm-12">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $product->user_id }}</p>
+    {!! Form::label('is_active', 'Is Active:') !!}
+    <p>{{ $product->is_active }}</p>
+</div>
+
+<!-- Admin Id Field -->
+<div class="col-sm-12">
+    {!! Form::label('admin_id', 'Admin Id:') !!}
+    <p>{{ $product->admin_id }}</p>
 </div>
 
 <!-- Price Field -->
@@ -56,6 +62,12 @@
 <div class="col-sm-12">
     {!! Form::label('is_available', 'Is Available:') !!}
     <p>{{ $product->is_available }}</p>
+</div>
+
+<!-- Views Field -->
+<div class="col-sm-12">
+    {!! Form::label('views', 'Views:') !!}
+    <p>{{ $product->views }}</p>
 </div>
 
 <!-- Stock Field -->
@@ -104,12 +116,6 @@
 <div class="col-sm-12">
     {!! Form::label('material', 'Material:') !!}
     <p>{{ $product->material }}</p>
-</div>
-
-<!-- Group Field -->
-<div class="col-sm-12">
-    {!! Form::label('group', 'Group:') !!}
-    <p>{{ $product->group }}</p>
 </div>
 
 <!-- Created At Field -->

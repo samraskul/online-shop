@@ -9,17 +9,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Product
  * @package App\Models\Admin
- * @version March 20, 2021, 12:34 am UTC
+ * @version April 11, 2021, 1:51 pm UTC
  *
  * @property string $name
  * @property integer $category_id
- * @property integer $user_id
- * @property integer $price
+ * @property boolean $is_active
+ * @property integer $admin_id
+ * @property number $price
  * @property integer $discount
  * @property string $short_description
  * @property string $long_description
  * @property string $specification
- * @property bool $is_available
+ * @property boolean $is_available
+ * @property integer $views
  * @property integer $stock
  * @property number $rate
  * @property string $brand
@@ -27,7 +29,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $color
  * @property string $size
  * @property string $material
- * @property string $group
  */
 class Product extends Model
 {
@@ -42,21 +43,22 @@ class Product extends Model
     public $fillable = [
         'name',
         'category_id',
-        'user_id',
+        'is_active',
+        'admin_id',
         'price',
         'discount',
         'short_description',
         'long_description',
         'specification',
         'is_available',
+        'views',
         'stock',
         'rate',
         'brand',
         'model',
         'color',
         'size',
-        'material',
-        'group'
+        'material'
     ];
 
     /**
@@ -65,21 +67,23 @@ class Product extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'name' => 'string',
         'category_id' => 'integer',
-        'user_id' => 'integer',
-        'price' => 'integer',
+        'is_active' => 'boolean',
+        'admin_id' => 'integer',
+        'price' => 'float',
         'discount' => 'integer',
         'short_description' => 'string',
+        'is_available' => 'boolean',
+        'views' => 'integer',
         'stock' => 'integer',
         'rate' => 'float',
+        'produce_date' => 'string',
         'brand' => 'string',
         'model' => 'string',
         'color' => 'string',
         'size' => 'string',
-        'material' => 'string',
-        'group' => 'string'
+        'material' => 'string'
     ];
 
     /**
@@ -90,6 +94,16 @@ class Product extends Model
     public static $rules = [
         'name' => 'required'
     ];
-
     
+    public function category_groups()
+    {
+        return $this->belongsToMany(CategoryGroup::class);
+    }
+
+    protected $with = ['images']; 
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
 }

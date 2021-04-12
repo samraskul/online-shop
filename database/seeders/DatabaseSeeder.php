@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,9 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        // $this->call(SettingSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(AdminSeeder::class);
         $this->call(RolePermissionSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(CategoryGroupSeeder::class);
+        $this->call(PostSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(SettingSeeder::class);
+        $this->call(ImageSeeder::class);
     }
 }

@@ -23,8 +23,9 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->word,
+        'description' => $this->faker->word,
         'content' => $this->faker->word,
-        'user_id' => $this->faker->word,
+        'admin_id' => $this->faker->word,
         'category_id' => $this->faker->word,
         'is_active' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),

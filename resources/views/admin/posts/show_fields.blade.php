@@ -10,16 +10,22 @@
     <p>{{ $post->title }}</p>
 </div>
 
+<!-- Description Field -->
+<div class="col-sm-12">
+    {!! Form::label('description', 'Description:') !!}
+    <p>{{ $post->description }}</p>
+</div>
+
 <!-- Content Field -->
 <div class="col-sm-12">
     {!! Form::label('content', 'Content:') !!}
     <p>{{ $post->content }}</p>
 </div>
 
-<!-- User Id Field -->
+<!-- Admin Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $post->user_id }}</p>
+    {!! Form::label('admin_id', 'Admin Id:') !!}
+    <p>{{ $post->admin_id }}</p>
 </div>
 
 <!-- Category Id Field -->

@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "bigIncrement:unsigned",
+        "dbType": "bigIncrements:unsigned",
         "htmlType": "text",
         "searchable": false,
         "fillable": false,
@@ -43,8 +43,8 @@
         "inIndex": true
     },
     {
-        "name": "user_id",
-        "dbType": "bigInteger:nullable:foreign,users,id:unsigned",
+        "name": "admin_id",
+        "dbType": "bigInteger:nullable:foreign,admins,id:unsigned",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
@@ -120,6 +120,16 @@
         "inIndex": true
     },
     {
+        "name": "views",
+        "dbType": "bigInteger:default,0",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
         "name": "stock",
         "dbType": "integer:default,0",
         "htmlType": "text",
@@ -143,7 +153,7 @@
     },
     {
         "name": "produce_date",
-        "dbType": "timestamp:nullable",
+        "dbType": "string,255:nullable",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -208,17 +218,8 @@
         "inForm": true,
         "inIndex": true
     },
-    {
-        "name": "group",
-        "dbType": "enum,all,male,female,baby,animal,thing,other:nullable",
-        "htmlType": "text",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
+    
+    
     {
         "name": "created_at",
         "dbType": "timestamp",

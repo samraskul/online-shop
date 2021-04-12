@@ -4,16 +4,22 @@
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Description Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('description', 'Description:') !!}
+    {!! Form::text('description', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('content', 'Content:') !!}
     {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- User Id Field -->
+<!-- Admin Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('admin_id', 'Admin Id:') !!}
+    {!! Form::text('admin_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Category Id Field -->

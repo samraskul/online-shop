@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -16,17 +17,17 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name' => 'admin']);
-        $user = User::where('email', 'like', 'admin%')->first();
-        $user->assignRole($role);
+        $role = Role::create(['guard_name' => 'admin', 'name' => 'admin']);
+        $admin = Admin::where('email', 'like', 'admin%')->first();
+        $admin->assignRole($role);
 
-        $role = Role::create(['name' => 'editor']);
-        $user = User::where('email', 'like', 'editor%')->first();
-        $user->assignRole($role);
+        $role = Role::create(['guard_name' => 'admin', 'name' => 'editor']);
+        $admin = Admin::where('email', 'like', 'editor%')->first();
+        $admin->assignRole($role);
 
-        $role = Role::create(['name' => 'assistant']);
-        $user = User::where('email', 'like', 'assistant%')->first();
-        $user->assignRole($role);
+        $role = Role::create(['guard_name' => 'admin', 'name' => 'assistant']);
+        $admin = Admin::where('email', 'like', 'assistant%')->first();
+        $admin->assignRole($role);
 
         $role = Role::create(['name' => 'customer']);
         $user = User::where('email', 'like', 'customer%')->first();

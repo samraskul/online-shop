@@ -10,10 +10,16 @@
     {!! Form::text('category_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- User Id Field -->
+<!-- Is Active Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('is_active', 'Is Active:') !!}
+    {!! Form::textarea('is_active', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Admin Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('admin_id', 'Admin Id:') !!}
+    {!! Form::text('admin_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Price Field -->
@@ -50,6 +56,12 @@
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('is_available', 'Is Available:') !!}
     {!! Form::textarea('is_available', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Views Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('views', 'Views:') !!}
+    {!! Form::text('views', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Stock Field -->
@@ -92,10 +104,4 @@
 <div class="form-group col-sm-6">
     {!! Form::label('material', 'Material:') !!}
     {!! Form::text('material', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Group Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('group', 'Group:') !!}
-    {!! Form::text('group', null, ['class' => 'form-control']) !!}
 </div>

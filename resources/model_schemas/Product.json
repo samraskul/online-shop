@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "increments",
+        "dbType": "bigIncrements:unsigned",
         "htmlType": "text",
         "validations": "",
         "searchable": false,
@@ -25,7 +25,7 @@
     },
     {
         "name": "category_id",
-        "dbType": "integer:nullable:foreign,categories,id:unsigned",
+        "dbType": "bigInteger:nullable:foreign,categories,id:unsigned",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
@@ -36,8 +36,20 @@
         "inView": true
     },
     {
-        "name": "user_id",
-        "dbType": "integer:nullable:foreign,users,id:unsigned",
+        "name": "is_active",
+        "dbType": "boolean:default,true",
+        "htmlType": "textarea",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "admin_id",
+        "dbType": "bigInteger:nullable:foreign,admins,id:unsigned",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
@@ -49,7 +61,7 @@
     },
     {
         "name": "price",
-        "dbType": "integer:nullable",
+        "dbType": "float:nullable",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
@@ -109,8 +121,20 @@
     },
     {
         "name": "is_available",
-        "dbType": "bool:default,true",
+        "dbType": "boolean:default,true",
         "htmlType": "textarea",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "views",
+        "dbType": "bigInteger:default,0",
+        "htmlType": "",
         "validations": "",
         "searchable": true,
         "fillable": true,
@@ -145,7 +169,7 @@
     },
     {
         "name": "produce_date",
-        "dbType": "timestamp:nullable",
+        "dbType": "string,255:nullable",
         "htmlType": "",
         "validations": "",
         "searchable": false,
@@ -206,18 +230,6 @@
     {
         "name": "material",
         "dbType": "string,255:nullable",
-        "htmlType": "text",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "group",
-        "dbType": "enum,all,male,female,baby,animal,thing,other:nullable",
         "htmlType": "text",
         "validations": "",
         "searchable": true,

@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Post
  * @package App\Models\Admin
- * @version March 21, 2021, 9:10 am UTC
+ * @version April 10, 2021, 10:06 pm UTC
  *
  * @property string $title
+ * @property string $description
  * @property string $content
- * @property integer $user_id
+ * @property integer $admin_id
  * @property integer $category_id
  * @property boolean $is_active
  */
@@ -29,8 +30,9 @@ class Post extends Model
 
     public $fillable = [
         'title',
+        'description',
         'content',
-        'user_id',
+        'admin_id',
         'category_id',
         'is_active'
     ];
@@ -41,9 +43,9 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'title' => 'string',
-        'user_id' => 'integer',
+        'description' => 'string',
+        'admin_id' => 'integer',
         'category_id' => 'integer',
         'is_active' => 'boolean'
     ];

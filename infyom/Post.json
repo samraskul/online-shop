@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "bigIncrement:unsigned",
+        "dbType": "bigIncrements:unsigned",
         "htmlType": "text",
         "searchable": false,
         "fillable": false,
@@ -11,7 +11,18 @@
     },
     {
         "name": "title",
-        "dbType": "string,191",
+        "dbType": "string,255",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "description",
+        "dbType": "string,255",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
@@ -32,8 +43,8 @@
         "inIndex": true
     },
     {
-        "name": "user_id",
-        "dbType": "bigInteger:unsigned:foreign,users,id:nullable",
+        "name": "admin_id",
+        "dbType": "bigInteger:unsigned:foreign,admins,id:nullable",
         "htmlType": "text",
         "validations": "",
         "searchable": true,
