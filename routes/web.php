@@ -67,3 +67,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('categoryGroups', App\Http\Controllers\Admin\Admin\CategoryGroupController::class, ["as" => 'admin']);
 });
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('pages', App\Http\Controllers\Admin\Admin\PageController::class, ["as" => 'admin']);
+});
