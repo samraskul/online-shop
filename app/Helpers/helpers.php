@@ -6,8 +6,8 @@ use Illuminate\Support\Str;
  * convert space in the product name to dash and
  * concat $productId, $productTitle
  * 
- * @var int
- * @var string
+ * @param int
+ * @param string
  * 
  * @return string
  */
@@ -23,7 +23,7 @@ function optimizeUrl($productId, $productName){
 /**
  * return the Id of dashed url
  * 
- * @var string
+ * @param string
  * 
  * @return string
  */
