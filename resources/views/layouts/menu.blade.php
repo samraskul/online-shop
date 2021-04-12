@@ -125,3 +125,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('admin.pages.index') }}"
+       class="nav-link {{ Request::is('admin/pages*') ? 'active' : '' }}">
+        <p>Pages</p>
+    </a>
+</li>
+
+

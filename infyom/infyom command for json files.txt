@@ -8,3 +8,4 @@ php artisan infyom:scaffold CategoryGroup --prefix=admin --fieldsFile=infyom/Cat
 php artisan infyom:scaffold Product --prefix=admin --fieldsFile=infyom/Product.json
 php artisan infyom:scaffold Post --prefix=admin --fieldsFile=infyom/Post.json
 php artisan infyom:scaffold Image --prefix=admin --fieldsFile=infyom/Image.json
+php artisan infyom:scaffold Page --prefix=admin --fieldsFile=infyom/Page.json
