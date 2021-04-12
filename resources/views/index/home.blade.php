@@ -81,7 +81,7 @@
                         <div class="card-item-container">
 
                             @foreach ($mostViewProducts as $product)
-                            <a href="{{ route('index.productSinglePage', optimizeProductUrl($product->id, $product->name)) }}" class="card-item-link">
+                            <a href="{{ route('index.productSinglePage', optimizeUrl($product->id, $product->name)) }}" class="card-item-link">
                                 <div class="card-item">
                                     {{-- @php
                                         dd($product->images);

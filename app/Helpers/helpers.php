@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
  * 
  * @return string
  */
-function optimizeProductUrl($productId, $productName){
+function optimizeUrl($productId, $productName){
     // $productNameWithDash = preg_replace('/\s/', '-', $productName);
     // $productNameRemoveAmpersand = preg_replace('/&/', '-and-', $productNameWithDash);
     // $productNameRemoveAmpersand = preg_replace('/=/', '', $productNameWithDash);
@@ -27,6 +27,6 @@ function optimizeProductUrl($productId, $productName){
  * 
  * @return string
  */
-function getProductId($productUrlWithDash){
+function getId($productUrlWithDash){
     return substr($productUrlWithDash, 0, strpos($productUrlWithDash, '-'));
 }
