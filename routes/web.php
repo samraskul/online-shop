@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Index\ProductController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\Index\HomeController;
@@ -32,7 +33,7 @@ Route::get('/temp', function () {
 Auth::routes();
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin'], function(){
     Route::view('/login', 'admin.admin-login');
@@ -50,6 +51,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::resource('categoryGroups', App\Http\Controllers\Admin\CategoryGroupController::class, ["as" => 'admin']);
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
     Route::resource('products', App\Http\Controllers\Admin\ProductController::class, ["as" => 'admin']);
 });
 
@@ -60,15 +66,17 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('images', App\Http\Controllers\Admin\Admin\ImageController::class, ["as" => 'admin']);
+    Route::resource('images', App\Http\Controllers\Admin\ImageController::class, ["as" => 'admin']);
 });
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('categoryGroups', App\Http\Controllers\Admin\Admin\CategoryGroupController::class, ["as" => 'admin']);
+    Route::resource('pages', App\Http\Controllers\Admin\PageController::class, ["as" => 'admin']);
 });
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('pages', App\Http\Controllers\Admin\Admin\PageController::class, ["as" => 'admin']);
+    Route::resource('users', App\Http\Controllers\Admin\UserController::class, ["as" => 'admin']);
 });
+
+
