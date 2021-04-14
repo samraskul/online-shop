@@ -46,7 +46,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedAttributes = $request->validate([
-            'name'=> 'required|regex:/^[a-z0-9-_@]+[a-z0-9-_@\s]*[a-z0-9-_@]+$/i',//regex covered "required"
+            'name'=> 'max:255|min:3|regex:/^[a-z0-9-_@\.\']+[a-z0-9-_@\s\.\']*[a-z0-9-_@\.\']+$/i',//regex covered "required"
             'email'=> 'required|email|unique:users,email',
             'mobile'=> 'regex:/\+*[0-9]{8,}/',//regex covered "min:8" regex covered "required"
             'sex'=>'required|in:male,female,other',
