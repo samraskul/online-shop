@@ -116,6 +116,19 @@ class UserControllerTest extends TestCase
         }
     }
 
+    public function test_user_store_validation_throws_error_if_email_validation_does_not_have_require()
+    {
+        $this->actingAs_admin();
+
+        $user = $this->fake_user_post();
+        $user['email'] = '';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+    }
+
     public function test_user_store_validation_throws_error_if_email_validation_does_not_have_email()
     {
         $this->actingAs_admin();
@@ -128,6 +141,154 @@ class UserControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.users.create'));
     }
+
+    public function test_user_store_validation_throws_error_if_email_validation_does_not_have_unique()
+    {
+        $this->actingAs_admin();
+
+        User::create([
+            'name' => 'abc',
+            'email' => 'abc@abc.com',
+            'mobile'  => '12356789',
+            'password' => '12345678',
+            'sex' => 'male',
+        ]);
+
+        $user = [
+            'name' => 'abcd',
+            'email' => 'abc@abc.com',
+            'mobile'  => '12356788',
+            'password' => '12345678',
+            'password_confirmation' => '12345678',
+            'sex' => 'male',
+        ];
+
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+    }
+
+    public function test_user_store_validation_throws_error_if_mobile_validation_does_not_have_regex()
+    {
+        $this->actingAs_admin();
+
+        $user = $this->fake_user_post();
+        $user['mobile'] = '71585844*';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+
+        $user = $this->fake_user_post();
+        $user['mobile'] = '111';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+
+        $mobile = '+4571717171';
+        $this->matchesRegularExpression('/\+*[0-9]{8,}$/', $mobile);
+    }
+
+    public function test_user_store_validation_throws_error_if_sex_validation_is_not_male_female_other()
+    {
+        $this->actingAs_admin();
+
+        $user = $this->fake_user_post();
+        $user['sex'] = 'klja';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+
+        $user = $this->fake_user_post();
+        $user['sex'] = 'male';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.index'));
+
+        $user = $this->fake_user_post();
+        $user['sex'] = 'female';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.index'));
+
+        $user = $this->fake_user_post();
+        $user['sex'] = 'other';
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.index'));
+    }
+
+    public function test_user_store_validation_throws_error_if_password_validation_is_not_required()
+    {
+        $this->actingAs_admin();
+
+        $user = [
+            'name' => 'abcd',
+            'email' => 'abc@abc.com',
+            'mobile'  => '12356788',
+            'password' => '',
+            'password_confirmation' => '',
+            'sex' => 'male',
+        ];
+
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+    }
+
+    public function test_user_store_validation_throws_error_if_password_validation_is_not_confirm()
+    {
+        $this->actingAs_admin();
+        
+        $user = [
+            'name' => 'abcd',
+            'email' => 'abc@abc.com',
+            'mobile'  => '12356788',
+            'password' => '123456789',
+            'password_confirmation' => '12345678',
+            'sex' => 'male',
+        ];
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+    }
+
+    public function test_user_store_validation_throws_error_if_password_validation_is_min_8()
+    {
+        $this->actingAs_admin();
+
+        $user = [
+            'name' => 'abcd',
+            'email' => 'abc@abc.com',
+            'mobile'  => '12356788',
+            'password' => '1234',
+            'password_confirmation' => '1234',
+            'sex' => 'male',
+        ];
+        $response = $this
+            ->from(route('admin.users.create'))
+            ->post(route('admin.users.store'), $user);
+
+        $response->assertRedirect(route('admin.users.create'));
+    }
+
 
     /**
      * for send a user to store or update method.
