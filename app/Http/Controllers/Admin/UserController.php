@@ -7,6 +7,7 @@ use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CreateUserRequest;
 
 class UserController extends Controller
 {
@@ -43,17 +44,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        $validatedAttributes = $request->validate([
-            'name'=> 'max:255|min:3|regex:/^[a-z0-9-_@\.\']+[a-z0-9-_@\s\.\']*[a-z0-9-_@\.\']+$/i',//regex covered "required"
-            'email'=> 'required|email|unique:users,email',
-            'mobile'=> 'regex:/\+*[0-9]{8,}$/',//regex covered "min:8" regex covered "required"
-            'sex'=>'required|in:male,female,other',
-            'password'=>'required|confirmed|min:8'
-        ]);
-
-        User::create($validatedAttributes);
+        User::create($request->validated());
 
         Flash::success('User saved successfully.');
 
