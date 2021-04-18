@@ -17,19 +17,19 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'admin.admin.store']) !!}
+            {!! Form::open(['route' => 'admin.admins.store']) !!}
 
             <div class="card-body">
 
                 <div class="row">
-                    @include('admin.admin.fields')
+                    @include('admin.admins.fields')
                 </div>
 
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('admin.admin.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('admin.admins.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

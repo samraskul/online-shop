@@ -28,7 +28,7 @@
     <br>
     {!! Form::password('password', null, ['class' => 'form-control']) !!}
     <br>
-    <div class="small"><abbr title="Leave it empty, if you don't want to change the password when updating the user">hover for help</abbr></div>
+    <div class="small"><abbr title="Leave it empty, if you don't want to change the password when updating the admin">hover for help</abbr></div>
 
 </div>
 
