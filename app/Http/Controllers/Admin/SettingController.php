@@ -6,8 +6,10 @@ use App\Http\Requests\Admin\CreateSettingRequest;
 use App\Http\Requests\Admin\UpdateSettingRequest;
 use App\Repositories\Admin\SettingRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Admin\Setting;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class SettingController extends AppBaseController
@@ -42,6 +44,8 @@ class SettingController extends AppBaseController
      */
     public function create()
     {
+        // $this->authorize('create', Setting::class);
+        $this->authorizeForUser(Auth::guard('admin')->user(), 'create', Setting::class);
         return view('admin.settings.create');
     }
 

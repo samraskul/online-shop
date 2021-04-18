@@ -17,7 +17,7 @@ class AdminLoginController extends Controller
      */
     public function __invoke(Request $request)
     {
-        if (Auth::check()) {
+        if (Auth::guard('admin')->check()) {
             return 'welcome again';
         }
 
