@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function __invoke()
     {
         $categories = Category::where('type', 'product')->get()->pluck('name', 'id');
-        $mostViewProducts = Product::orderBy('views', 'desc')->limit(15)->get(['id','name', 'price', 'discount']);//['name', 'price', 'discount']
+        $mostViewProducts = Product::orderBy('views', 'desc')->limit(15)->get(['id','name', 'price', 'discount']); //['name', 'price', 'discount']
         $recentPosts = Post::orderBy('created_at', 'desc')->limit(10)->pluck('title', 'id');
         // foreach ($mostViewProducts as $mostViewProduct) {
         //     dd($mostViewProduct);
