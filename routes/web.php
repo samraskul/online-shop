@@ -1,12 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Index\ProductController;
-use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\Index\HomeController;
-use App\Http\Controllers\SettingController;
-use App\Models\Admin\CategoryGroup;
-use App\Models\Admin\Product;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,7 +33,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin'], function(){
     Route::view('/login', 'admin.admin-login');
-    Route::post('/login', AdminLoginController::class);
+    Route::post('/login', App\Http\Controllers\AdminLoginController::class);
 
     Route::resource('settings', App\Http\Controllers\Admin\SettingController::class, ["as" => 'admin']);
     Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class, ["as" => 'admin']);
