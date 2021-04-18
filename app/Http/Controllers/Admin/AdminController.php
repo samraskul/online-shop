@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\DataTables\AdminsDataTable;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -12,9 +14,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AdminsDataTable $dataTable)
     {
-        //
+        // $this->authorize('viewAny', Auth::guard('admin')->user());
+        return $dataTable->render('admin.admins.index');
     }
 
     /**
