@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>User Details</h1>
+                    <h1>Admin Details</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"
-                       href="{{ route('admin.users.index') }}">
+                       href="{{ route('admin.admins.index') }}">
                         Back
                     </a>
                 </div>
@@ -22,7 +22,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('admin.users.show_fields')
+                    @include('admin.admins.show_fields')
                 </div>
             </div>
 

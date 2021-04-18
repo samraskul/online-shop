@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\AdminsDataTable;
 use App\Models\Admin;
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
+use App\DataTables\AdminsDataTable;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -16,7 +17,6 @@ class AdminController extends Controller
      */
     public function index(AdminsDataTable $dataTable)
     {
-        // $this->authorize('viewAny', Auth::guard('admin')->user());
         return $dataTable->render('admin.admins.index');
     }
 
@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admins.create');
     }
 
     /**
@@ -38,7 +38,18 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedAttributes = $request->validate([
+            'name' => 'required|regex:/^[a-z0-9-_@]+[a-z0-9-_@\s]*[a-z0-9-_@]+$/i', //regex covered "required"
+            'email' => "required|email|unique:admins,email",
+            'mobile' => 'regex:/\+*[0-9]{8,}/', //regex covered "min:8" regex covered "required"
+            'sex' => 'required|in:male,female,other',
+            'password' => 'confirmed|min:8'
+        ]);
+        Admin::create($validatedAttributes);
+
+        Flash::success('Admin saved successfully.');
+
+        return redirect()->route('admin.admins.index');
     }
 
     /**
@@ -49,7 +60,7 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        return view('admin.admins.show', compact('admin'));
     }
 
     /**
@@ -60,7 +71,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        //
+        return view('admin.admins.edit', compact('admin'));
     }
 
     /**
@@ -72,7 +83,25 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+
+        $validatedAttributes = $request->validate([
+            'name' => 'required|regex:/^[a-z0-9-_@]+[a-z0-9-_@\s]*[a-z0-9-_@]+$/i', //regex covered "required"
+            'email' => "required|email|unique:admins,email,$admin->id",
+            'mobile' => 'regex:/\+*[0-9]{8,}/', //regex covered "min:8" regex covered "required"
+            'sex' => 'required|in:male,female,other',
+        ]);
+        if (!empty($request->password)) {
+            $password = $request->validate([
+                'password' => 'confirmed|min:8'
+            ]);
+            $validatedAttributes['password'] = $password['password'];
+        }
+
+        $admin->update($validatedAttributes);
+
+        Flash::success("Admin updated successfully");
+
+        return redirect()->route('admin.admins.index');
     }
 
     /**
@@ -83,6 +112,10 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        $admin->delete();
+
+        Flash::success("Admin $admin->email deleted successfully");
+
+        return redirect()->route('admin.admins.index');
     }
 }
