@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateUserRequest;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +26,7 @@ class UserController extends Controller
     // }
     public function index(UsersDataTable $dataTable)
     {
+        // $this->authorize('viewAny', Auth::guard('admin')->user());
         return $dataTable->render('admin.users.index');
 
     }
@@ -35,6 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        // $this->authorize('create', User::class);
         return view('admin.users.create');
     }
 
