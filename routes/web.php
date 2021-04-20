@@ -24,37 +24,36 @@ Route::get('/', HomeController::class)->name('index.homePage'); //completed
 Route::get('/product/{productUrl}', ProductController::class)->name('index.productSinglePage');
 
 Route::get('/temp', function () {
-    $role = Role::where('name', 'admin')->first();
-    $permission = Permission::find(1);
-    $permission->assignRole($role);
-    $admin = Admin::find(1);
-    $admin->assignRole($role);
-    $admin->givePermissionTo($permission);
+    // $role = Role::where('name', 'admin')->first();
+    // $permission = Permission::find(1);
+    // $permission->assignRole($role);
+    // $admin = Admin::find(1);
+    // $admin->assignRole($role);
+    // $admin->givePermissionTo($permission);
 
-    $role2 = Role::where('name', 'editor')->first();
-    $permission2 = Permission::find(2);
-    $permission2->assignRole($role2);
-    $admin2 = Admin::find(2);
-    $admin2->assignRole($role2);
-    $admin2->givePermissionTo($permission2);
-    $admin->givePermissionTo($permission2);
+    // $role2 = Role::where('name', 'editor')->first();
+    // $permission2 = Permission::find(2);
+    // $permission2->assignRole($role2);
+    // $admin2 = Admin::find(2);
+    // $admin2->assignRole($role2);
+    // $admin2->givePermissionTo($permission2);
+    // $admin->givePermissionTo($permission2);
 
 
-    $role3 = Role::where('name', 'assistant')->first();
-    $permission3 = Permission::find(3);
-    $permission3->assignRole($role3);
-    $admin3 = Admin::find(3);
-    $admin3->assignRole($role3);
-    $admin3->givePermissionTo($permission3);
-    $admin->givePermissionTo($permission3);
-    $admin2->givePermissionTo($permission3);
+    // $role3 = Role::where('name', 'assistant')->first();
+    // $permission3 = Permission::find(3);
+    // $permission3->assignRole($role3);
+    // $admin3 = Admin::find(3);
+    // $admin3->assignRole($role3);
+    // $admin3->givePermissionTo($permission3);
+    // $admin->givePermissionTo($permission3);
+    // $admin2->givePermissionTo($permission3);
 
 
 
     
-    // Permission::create(['name' => 'editor can', 'guard' => 'admin']);
-    // Permission::create(['name' => 'assistant can', 'guard' => 'admin']);
-    return "ok";
+    
+    return view('temp');
 });
 
 
