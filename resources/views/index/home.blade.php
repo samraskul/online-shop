@@ -15,9 +15,20 @@
                     </select>
 
                 </div>
-                <div>
-                    <input type="text" name="search" placeholder="Enter keywords here...">
-                </div>
+
+                
+                @push('styles')
+                    @livewireStyles
+                @endpush
+                
+                
+                <livewire:product-search/>
+                {{-- @livewire('temp') --}}
+
+                @push('scripts')
+                    @livewireScripts
+                @endpush
+
                 <li class="fa fa-search"></li>
             </form>
         </div>

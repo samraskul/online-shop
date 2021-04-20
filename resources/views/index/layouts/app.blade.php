@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="/assets/css/style.css">
     <title>Shop</title>
+
+    @stack('styles')
+
 </head>
 
 <body>
@@ -313,6 +316,8 @@
 
 <!-- TODO:add script for search bottom to submit the form  -->
 <script src="/assets/js/script.js"></script>
+
+@stack('scripts')
 
 </body>
 
